@@ -23,8 +23,8 @@ class SiteController extends Controller
     public function newUser(Request $request)
     {
 
-        echo "<pre>";
-        print_r($request->all());
+        // echo "<pre>";
+        // print_r($request->all());
 
         $request->validate(
             [
@@ -39,5 +39,12 @@ class SiteController extends Controller
         $newUser->mobile = $request['mobile'];
         $newUser->email = $request['email'];
         $newUser->save();
+
+        // Redirect to the "data" page with the user data
+        return redirect()->route('data')->with([
+            'name' => $request['name'],
+            'mobile' => $request['mobile'],
+            'email' => $request['email']
+        ]);
     }
 }

@@ -46,12 +46,32 @@
                 </div>
             </div>
         </nav>
-
     </header>
     <main>
-        <h1>This is Home Page</h1>
 
-        <a href="{{ url('/account') }}">Account</a>
+        <div class="container">
+            <div class="table-responsive">
+                <table class="table table-info">
+                    <thead>
+                        <tr>
+                            <th scope="col">Name</th>
+                            <th scope="col">Mobile Number</th>
+                            <th scope="col">Email</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach ($allUser as $user)
+                            <tr class="">
+                                <td>{{ $user->name }}</td>
+                                <td>{{ $user->mobile }}</td>
+                                <td>{{ $user->email }}</td>
+                            </tr>
+                        @endforeach
+                    </tbody>
+                </table>
+            </div>
+
+        </div>
 
     </main>
     <footer>
