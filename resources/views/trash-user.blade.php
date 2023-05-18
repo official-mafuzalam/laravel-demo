@@ -2,7 +2,7 @@
 <html lang="en">
 
 <head>
-    <title>{{$title}}</title>
+    <title>Trashed User</title>
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -48,50 +48,41 @@
         </nav>
     </header>
     <main>
-        <div class="container text-center">
-            <h1>{{ $title }}</h1>
-        </div>
+
         <div class="container">
-
-            <form action="{{ $url }}" method="POST">
-                @csrf
-                <div class="mb-3">
-                    <label for="name" class="form-label">Name</label>
-                    <input type="text" name="name" id="name" class="form-control" placeholder=""
-                        aria-describedby="helpId" value="{{ $user->name }}">
-                    <span class="text-danger">
-                        @error('name')
-                            {{ $message }}
-                        @enderror
-                    </span>
-                </div>
-                <div class="mb-3">
-                    <label for="mobile" class="form-label">Mobile Number</label>
-                    <input type="tel" name="mobile" id="mobile" class="form-control" placeholder=""
-                        aria-describedby="helpId" value="{{ $user->mobile }}">
-                    <span class="text-danger">
-                        @error('number')
-                            {{ $message }}
-                        @enderror
-                    </span>
-                </div>
-                <div class="mb-3">
-                    <label for="email" class="form-label">Email</label>
-                    <input type="email" name="email" id="email" class="form-control" placeholder=""
-                        aria-describedby="helpId" value="{{ $user->email }}">
-                    <span class="text-danger">
-                        @error('email')
-                            {{ $message }}
-                        @enderror
-                    </span>
-                </div>
-                <div class="mb-3 text-center">
-                    <button type="submit" class="btn btn-primary">Submit</button>
-                </div>
-            </form>
+            <div class="table-responsive">
+                <table class="table table-bordered">
+                    <thead>
+                        <tr>
+                            <th scope="col">Name</th>
+                            <th scope="col">Mobile Number</th>
+                            <th scope="col">Email</th>
+                            <th scope="col">Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach ($users as $user)
+                            <tr class="">
+                                <td>{{ $user->name }}</td>
+                                <td>{{ $user->mobile }}</td>
+                                <td>{{ $user->email }}</td>
+                                <td>
+                                    <a class="text-decoration-none"
+                                        href="{{ route('user.delete', ['id' => $user->id]) }}">
+                                        <button class="btn btn-danger btn-sm">Delete</button>
+                                    </a>
+                                    <a class="text-decoration-none"
+                                        href="{{ route('user.restore', ['id' => $user->id]) }}">
+                                        <button class="btn btn-info btn-sm">Restore</button>
+                                    </a>
+                                </td>
+                            </tr>
+                        @endforeach
+                    </tbody>
+                </table>
+            </div>
 
         </div>
-
 
     </main>
     <footer>

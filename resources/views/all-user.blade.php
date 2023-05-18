@@ -2,7 +2,7 @@
 <html lang="en">
 
 <head>
-    <title>Title</title>
+    <title>All User</title>
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -38,6 +38,9 @@
                         <li class="nav-item">
                             <a class="nav-link" href="{{ url('/account/signup') }}">Signup</a>
                         </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('user.allTrash') }}">Trash</a>
+                        </li>
                     </ul>
                     <form class="d-flex my-2 my-lg-0">
                         <input class="form-control me-sm-2" type="text" placeholder="Search">
@@ -51,12 +54,13 @@
 
         <div class="container">
             <div class="table-responsive">
-                <table class="table table-info">
+                <table class="table table-bordered">
                     <thead>
                         <tr>
                             <th scope="col">Name</th>
                             <th scope="col">Mobile Number</th>
                             <th scope="col">Email</th>
+                            <th scope="col">Action</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -65,6 +69,16 @@
                                 <td>{{ $user->name }}</td>
                                 <td>{{ $user->mobile }}</td>
                                 <td>{{ $user->email }}</td>
+                                <td>
+                                    <a class="text-decoration-none"
+                                        href="{{ route('user.trash', ['id' => $user->id]) }}">
+                                        <button class="btn btn-danger btn-sm">Trash</button>
+                                    </a>
+                                    <a class="text-decoration-none"
+                                        href="{{ route('user.update', ['id' => $user->id]) }}">
+                                        <button class="btn btn-warning btn-sm">Edit</button>
+                                    </a>
+                                </td>
                             </tr>
                         @endforeach
                     </tbody>
