@@ -4,11 +4,49 @@ use App\Models\NewUser;
 use App\Models\Product;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\SiteController;
+use App\Http\Controllers\StudentHandler;
 use Illuminate\Http\Request;
 
 // Route Start
 
-Route::get('/', [SiteController::class, 'Home']);
+Route::get('/', [StudentHandler::class, 'Home']);
+
+
+Route::group(['prefix' => 'administration'], function () {
+
+
+    Route::get('/student_add', [StudentHandler::class, 'StudentAdd'])->name('student.add_page');
+
+
+
+});
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 Route::get('/account', [SiteController::class, 'Account']);
 
 Route::group(['prefix' => 'account'], function () {
@@ -26,7 +64,7 @@ Route::group(['prefix' => 'account'], function () {
     Route::get('/restore/{id}', [SiteController::class, 'restore'])->name('user.restore');
 
     Route::get('/trash-user/{id}', [SiteController::class, 'trash'])->name('user.trash');
-    
+
     Route::get('/trash-user', [SiteController::class, 'allTrash'])->name('user.allTrash');
 
     Route::get('/profile', function () {

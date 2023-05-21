@@ -9,7 +9,7 @@ class SiteController extends Controller
 {
     function Home()
     {
-        return view('home');
+        return view('administration/home');
     }
     function Account()
     {

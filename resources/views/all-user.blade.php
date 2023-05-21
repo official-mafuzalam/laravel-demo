@@ -72,11 +72,11 @@
                                 <td>
                                     <a class="text-decoration-none"
                                         href="{{ route('user.trash', ['id' => $user->id]) }}">
-                                        <button class="btn btn-danger btn-sm">Trash</button>
+                                        <button class="btn btn-warning btn-sm">Trash</button>
                                     </a>
                                     <a class="text-decoration-none"
                                         href="{{ route('user.update', ['id' => $user->id]) }}">
-                                        <button class="btn btn-warning btn-sm">Edit</button>
+                                        <button class="btn btn-info btn-sm">Edit</button>
                                     </a>
                                 </td>
                             </tr>
